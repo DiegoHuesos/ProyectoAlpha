@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 /**
  * La clase ClientThread que extiende la Superclase Thread y funge como un Cliente con todos los clientes
  * necesarios, genera tiros aleatorios mientras no se haya terminado la partida.
- * Además, obtiene los tiempos de respuesta de cada una de las comunicaciones remotas, con las cuales calcula
+ * Además, obtiene los tiempos de respuesta de cada una de las comunicaciones remotas, con las cuales calculará
  * la desviación estándar.
  */
 
@@ -54,25 +54,9 @@ public class ClienteThread extends Thread{
             }
         }
 
-        rmiText = "RMI," + cliente.getName() + "," + cliente.getRmi().getRegisterTime();
-        tcpText = "TCP," + cliente.getName() + "," + cliente.getTcp().getResponseTime().get(0);
-        tcpMeanText = "TCP-mean," + cliente.getName() + "," + Estresador.mean(cliente.getTcp().getResponseTime());
-        tcpStdDevText = "TCP-stdDev," + cliente.getName() + "," + Estresador.stdDev(cliente.getTcp().getResponseTime());
-        erroresTcpText = "Errores-TCP," + cliente.getName() + "," + cliente.getTcp().getErroresTCP()/cliente.getTcp().getResponseTime().size();
-
+        rmiText = "Tiempo de respuesta RMI" + cliente.getRmi().getRegisterTime();
         System.out.println(rmiText);
-        System.out.println(tcpText);
-        System.out.println(tcpMeanText);
-        System.out.println(tcpStdDevText);
-        System.out.println(erroresTcpText);
 
-
-
-        if(cliente.getRmi().isError()){
-            System.out.println("Errores-RMI," + cliente.getName() + "," + 1);
-        }else{
-            System.out.println("Errores-RMI," + cliente.getName() + "," + 0);
-        }
     }
 
 }
